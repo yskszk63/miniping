@@ -25,7 +25,7 @@ fn ipFromArgs() !?IPV4 {
 pub fn main() !void {
     const ip = (try ipFromArgs()) orelse return Errors.NeedIpv4InArgs;
 
-    const sock = try os.socket(os.AF.INET, os.SOCK.DGRAM | os.SOCK.CLOEXEC | os.SOCK.NONBLOCK, os.IPPROTO.ICMP);
+    const sock = try os.socket(os.AF.INET, os.SOCK.DGRAM | os.SOCK.CLOEXEC, os.IPPROTO.ICMP);
     defer os.closeSocket(sock);
 
     const wbuf = [_]u8{
